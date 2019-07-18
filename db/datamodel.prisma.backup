@@ -1,0 +1,36 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  passwordHash: String!
+  roles: [Role!] @relation(link: TABLE, name: "UserToRole")
+}
+
+type Role {
+  id: ID! @id
+  name: String!
+  permissions: [Permission!] @relation(link: TABLE, name: "RoleToPermission")
+}
+
+type Permission {
+  id: ID! @id
+  name: String!
+  code: String!
+  parent: Permission
+}
+
+type Post {
+  id: ID! @id
+  title: String!
+  body: String!
+}
+
+type UserToRole @relationTable {
+  user: User!
+  role: Role!
+}
+
+type RoleToPermission @relationTable {
+  role: Role!
+  permission: Permission!
+}

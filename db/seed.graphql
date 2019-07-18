@@ -1,0 +1,71 @@
+mutation {
+  createPersissionPostCreate: upsertPermission ( 
+    where: {code: "posts.create"}
+    create: {
+      name: "Create Post"
+      code: "posts.create"
+    }
+    update: {}
+  ) {
+    id
+  }
+  
+  createPersissionPostUpdate: upsertPermission ( 
+    where: {code: "posts.update"}
+    create: {
+      name: "Update Post"
+      code: "posts.update"
+    }
+    update: {}
+  ) {
+    id
+  }
+
+  createRoleAdmin: upsertRole (
+    where: {code: "admin"}
+    update:{}
+    create: {
+      name: "Admin"
+      code: "admin"
+      permissions: {
+        connect: [
+          {
+            code: "posts.create"
+          },
+          {
+            code: "posts.update"
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+
+  createAdminUser: upsertUser (
+    where: {email: "admin@example.com"}
+    update: {}
+    create: {
+      name: "Admin Dude"
+      email: "admin@example.com"
+      passwordHash:"$2a$10$O6CCjimC9iiOBPXBiBV7w.BFuSTduW0lNqcNXfRJroZ0Zdj7c9Uai" # "testpass"
+      roles: {
+        connect:{code: "admin"}
+      }
+    })
+  {
+    id
+    name
+    email
+    roles {
+      id
+      code
+      name
+      permissions {
+        id
+        code
+        name
+      }
+    }
+  }
+}

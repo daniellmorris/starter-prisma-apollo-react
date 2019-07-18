@@ -1,0 +1,9 @@
+endpoint: http://localhost:4466/
+datamodel: db/datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./src-server/generated/prisma-client/
+
+seed: 
+  run: node db/seed.js
