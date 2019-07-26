@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ApolloProvider } from "react-apollo";
 
 // import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import './App.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './App.css';
 import SignIn from './components/auth/sign-in';
 import SignUp from './components/auth/sign-up';
 import Header from './components/header';

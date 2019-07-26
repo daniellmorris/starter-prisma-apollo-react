@@ -35,7 +35,6 @@ class Header extends React.Component {
 
   render() {
     let { data: {me} } = this.props;
-    console.log(this.props)
     let links;
     if (!me) {
       links = 
